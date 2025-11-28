@@ -1,0 +1,201 @@
+/* =========================================
+   1. Main Section & Layout
+   ========================================= */
+.videos-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  background-color: #0b0b0b;
+  box-sizing: border-box; /* Ensures padding doesn't break width */
+  overflow: hidden;
+}
+
+/* Container limits width on big screens */
+.split-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1600px;
+  gap: 60px;
+  align-items: center; 
+}
+
+/* =========================================
+   2. Left Side: Video Grid
+   ========================================= */
+.left-video-grid {
+  flex: 2; /* Desktop: 2/3 width */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Desktop: 3 Columns */
+  gap: 20px;
+  width: 100%;
+}
+
+.video-item {
+  position: relative;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  aspect-ratio: 16 / 9; /* Enforce standard video aspect ratio */
+}
+
+.video-item:hover {
+  transform: scale(1.03);
+  z-index: 2;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-label {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
+/* =========================================
+   3. Right Side: Text Content
+   ========================================= */
+.right-text-content {
+  flex: 1; /* Desktop: 1/3 width */
+  color: #fff;
+  text-align: left;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.1;
+  background: linear-gradient(90deg, #fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #c0c0c0;
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #ddd;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   4. Animation (Reveal)
+   ========================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px); /* Reduced movement for smoother mobile feel */
+  transition: all 1s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   5. RESPONSIVE DESIGN
+   ========================================= */
+
+/* --- Tablet & Small Laptop (1024px and down) --- */
+@media (max-width: 1024px) {
+  .videos-section {
+    height: auto; /* Remove fixed height constraints */
+    padding: 40px 30px;
+  }
+
+  .split-container {
+    /* Stack elements: Text on TOP, Videos on BOTTOM */
+    flex-direction: column-reverse; 
+    gap: 40px;
+  }
+
+  .right-text-content {
+    text-align: center; /* Center text when stacked */
+    width: 100%;
+    flex: auto;
+  }
+  
+  .left-video-grid {
+    flex: auto;
+    width: 100%;
+    /* Switch to 2 columns on tablet so video player icons are clickable */
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+/* --- Mobile (768px and down) --- */
+@media (max-width: 768px) {
+  .videos-section {
+    padding: 30px 20px;
+    
+  }
+
+  .split-container {
+    gap: 30px;
+  }
+
+  .main-title {
+    font-size: 2.2rem;
+    margin-top: 40px;
+
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+  /* Keep 2 columns on landscape/large phones, 
+     but reduce gap to save space */
+  .left-video-grid {
+    gap: 15px;
+  }
+}
+
+/* --- Small Mobile (480px and down) --- */
+@media (max-width: 480px) {
+  .videos-section {
+    padding: 20px 15px;
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+  }
+
+  /* Switch to 1 column for very small screens 
+     so video controls are big enough to tap */
+  .left-video-grid {
+    grid-template-columns: 1fr; 
+  }
+
+  .video-label {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+}

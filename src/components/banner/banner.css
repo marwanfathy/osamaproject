@@ -1,0 +1,197 @@
+/* =========================================
+   1. Main Container
+   ========================================= */
+.main-banner {
+  position: relative;
+  width: 100%;
+  height: 80vh; /* Keeps the banner tall */
+  min-height: 600px; /* Prevents squishing on small landscape phones */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+/* =========================================
+   2. Text Styling
+   ========================================= */
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* Layout: Pushes text apart to make room for image */
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  justify-content: center;
+  gap: 400px; 
+  
+  width: 100%;
+  margin: 0;
+  z-index: 3; /* Highest priority so text is readable */
+  
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #333;
+  white-space: nowrap;
+  pointer-events: none; /* Allows clicking through text if needed */
+}
+
+/* =========================================
+   3. Background Pulse (The Dot)
+   ========================================= */
+/* Container for the dot to position it centrally */
+.behind-dot {
+  position: absolute;
+  top: 55%;
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Behind image */
+  
+  /* Resetting badge styles from your snippet to fit the circle logic */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pulse-dot {
+  height: 55vh; /* Responsive based on viewport height */
+  width: 55vh;
+  background-color: #fed425;
+  border-radius: 50%;
+  display: block;
+  animation: analytics-pulse-animation 2s infinite;
+}
+
+@keyframes analytics-pulse-animation {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(254, 212, 37, 0.7); opacity: 1; }
+  70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(254, 212, 37, 0); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 1; }
+}
+
+/* =========================================
+   4. Usama Image
+   ========================================= */
+.banner-usama {
+  position: absolute;
+  top: 61%; /* Match the dot position */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Between dot and text */
+  
+  height: auto;
+  width: auto;
+  max-height: 65vh; /* Prevent overflowing top/bottom */
+  max-width: 400px; /* Maximum desktop width */
+}
+
+/* =========================================
+   5. Social Media (Bottom Left)
+   ========================================= */
+.home__social {
+  position: absolute;
+  bottom: 2rem;
+  left: 3rem;
+  display: flex;
+  column-gap: 1.5rem;
+  z-index: 10;
+}
+
+.home__social-link {
+  color: #333;
+  font-size: 1.8rem;
+  transition: transform 0.3s, color 0.3s;
+  display: inline-flex;
+}
+
+.home__social-link:hover {
+  transform: translateY(-5px);
+  color: #fed425;
+}
+
+
+/* =========================================
+   MEDIA QUERIES (Responsiveness)
+   ========================================= */
+
+/* Tablet & Smaller Laptops */
+@media (max-width: 1024px) {
+  .banner-text {
+    font-size: 1.8rem;
+    gap: 320px; /* Reduce gap as image shrinks */
+  }
+  
+  .banner-usama {
+    max-width: 300px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  
+  /* 1. Stack the text vertically instead of horizontally */
+  .banner-text {
+    flex-direction: column; /* Stack spans */
+    gap: 3px; /* Create vertical space for the image */
+    font-size: 2rem; /* Smaller text */
+    text-align: center;
+    white-space: normal; /* Allow text to wrap if screen is very thin */
+    line-height: 1.2;
+    top: 40%;
+  
+  }
+  #ai-tex-ban{
+    color: #6e6e6e;
+  }
+  .banner-text span {
+    display: block;
+    padding: 0 10px; /* Prevent text touching edges */
+
+  }
+
+  /* 2. Resize Image */
+  .banner-usama {
+    width: 600px; /* Fixed width for mobile consistency */
+    top: 76%; /* Center exactly */
+  }
+
+  /* 3. Resize Pulse Dot */
+  .pulse-dot {
+    width: 280px; /* Slightly larger than image */
+    height: 280px;
+  }
+  
+  .behind-dot {
+    top: 70%; /* Align with image */
+  }
+
+  /* 4. Center Social Icons */
+  .home__social {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Small Mobile Screens (iPhone SE, etc) */
+@media (max-width: 380px) {
+  .banner-text {
+    gap: 260px; /* Less vertical space */
+    font-size: 1.1rem;
+  }
+  
+  .banner-usama {
+    width: 200px;
+  }
+  
+  .pulse-dot {
+    width: 220px;
+    height: 220px;
+  }
+}

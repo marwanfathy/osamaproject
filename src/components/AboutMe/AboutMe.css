@@ -1,0 +1,157 @@
+/* =========================================
+   1. GLOBAL STYLES (Desktop Default)
+   ========================================= */
+.AboutMe {
+    width: 100%;
+    min-height: 100vh; /* changed to min-height for safety */
+    overflow: hidden;
+    background-color: #ffffff;
+    position: relative;
+    
+    /* Enable Flexbox layout */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    box-sizing: border-box;
+}
+
+/* --- Image (Desktop: Right Side) --- */
+.abt-me-img {
+    width: 45%;
+    max-width: 550px;
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+    /* Resetting your old hardcoded positions */
+    position: relative; 
+    left: 60%; 
+    top: 135px;
+}
+
+/* --- Text Container (Desktop: Left Side) --- */
+.abt-me-right-text-content {
+    width: 50%;
+    position: relative;
+    /* Resetting your old hardcoded positions */
+    bottom: auto; 
+    right: 50%;
+    z-index: 2;
+}
+
+.abt-me-main-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    background: linear-gradient(90deg, #ffd700, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.abt-me-description {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+strong {
+    color: #ffd700;
+}
+
+/* --- Social Media (Desktop: Bottom Left Absolute) --- */
+.abt-home-social {
+    position: absolute;
+    left: 5%;
+    bottom: 50px; /* Adjusted to fit nicely */
+    display: flex;
+    column-gap: 1.5rem;
+    z-index: 10;
+}
+
+.abt-home__social-link {
+    color: #333;
+    font-size: 2rem;
+    transition: transform 0.3s, color 0.3s;
+    display: inline-flex;
+    text-decoration: none;
+}
+
+.abt-home__social-link:hover {
+    transform: translateY(-5px);
+    color: #ffd700;
+}
+
+/* =========================================
+   2. MOBILE RESPONSIVENESS
+   ========================================= */
+
+@media (max-width: 900px) { /* Tablets & Phones */
+    
+    .AboutMe {
+        flex-direction: column; /* Stack vertically */
+        justify-content: flex-start; /* Start from top */
+        padding: 80px 20px 40px; /* Add top padding for navbar space */
+        height: auto;
+    }
+
+    /* --- ORDER 1: TEXT --- */
+    .abt-me-right-text-content {
+        order: 1;
+        width: 100%;
+        text-align: center; /* Center text on mobile */
+        margin-bottom: 10px;
+        left: 0%;
+    }
+    
+    .abt-me-main-title {
+        font-size: 2.2rem; /* Smaller title */
+    }
+
+    /* --- ORDER 2: SOCIAL MEDIA --- */
+    .abt-home-social {
+        order: 2;
+        /* Stop floating absolutely, become part of the stack */
+        position: relative; 
+        left: auto;
+        bottom: auto;
+        
+        width: 100%;
+        justify-content: center; /* Center icons */
+        margin-bottom: 30px; /* Space between icons and photo */
+    }
+
+    /* --- ORDER 3: PHOTO --- */
+    .abt-me-img {
+        order: 3;
+        width: 100%;
+        top: 65px; /* Reasonable width */
+        max-width: 400px;
+        left: 0%;
+    }
+}
+
+/* =========================================
+   3. ANIMATIONS
+   ========================================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.abt-me-right-text-content.reveal {
+    transition-delay: 0.1s;
+}
+
+/* Make photo reveal last since it's at the bottom on mobile */
+.abt-me-img.reveal {
+    transition-delay: 0.3s; 
+}
