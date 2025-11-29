@@ -78,7 +78,7 @@
    ========================================= */
 .banner-usama {
   position: absolute;
-  top: 61%; /* Match the dot position */
+  top: 385px; /* Match the dot position */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2; /* Between dot and text */
