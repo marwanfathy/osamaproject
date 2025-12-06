@@ -18,7 +18,7 @@
    ========================================= */
 .banner-text {
   position: absolute;
-  top: 50%;
+  top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
   
@@ -78,8 +78,8 @@
    ========================================= */
 .banner-usama {
   position: absolute;
-  top: 61%; /* Match the dot position */
-  left: 50%;
+  top: 65%; /* Match the dot position */
+  left: 49%;
   transform: translate(-50%, -50%);
   z-index: 2; /* Between dot and text */
   
@@ -182,16 +182,34 @@
 /* Small Mobile Screens (iPhone SE, etc) */
 @media (max-width: 380px) {
   .banner-text {
-    gap: 260px; /* Less vertical space */
-    font-size: 1.1rem;
+    gap: 5px;
+    font-size: 1.8rem;
   }
   
   .banner-usama {
-    width: 200px;
+    width: 250px;
   }
   
   .pulse-dot {
-    width: 220px;
-    height: 220px;
+    width: 270px;
+    height: 270px;
+  }
+}
+@media (max-width: 810px) {
+  .banner-text {
+    gap: 5px;
+    font-size: 1.9rem;
+  }
+  
+  .banner-usama {
+    width: 300px;
+    top: 62vh
+  }
+    .behind-dot {
+    top: 74%; /* Align with image */
+  }
+  .pulse-dot {
+    width: 350px;
+    height: 350px;
   }
 }

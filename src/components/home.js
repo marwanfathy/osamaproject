@@ -6,7 +6,7 @@ import AboutMe from './AboutMe/AboutMe';
 import Ai from './Ai/Ai';
 import Footer from './Footer/Footer';
 import '../App.css'
-
+import AnatomyViewer from "./anatomy/AnatomyViewer"
 // Add onOpenLogin to props
 function Home({ username, onLogout, onOpenLogin }) {
   return (
@@ -18,6 +18,7 @@ function Home({ username, onLogout, onOpenLogin }) {
       />
       <Banner />
       <VideosSection />
+      <AnatomyViewer />
       <AboutMe />
       <Ai />
       <Footer />

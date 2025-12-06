@@ -1,0 +1,144 @@
+/* Container for the whole page */
+.anatomy-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+/* LEFT COLUMN: 3D Canvas */
+.anatomy-visuals {
+  flex: 1.5;
+  position: relative;
+  background-color: #0b0b0b;
+  /* Ensure touch gestures don't block vertical scrolling entirely */
+  touch-action: pan-y; 
+}
+
+/* RIGHT COLUMN: Text */
+.anatomy-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4rem;
+  background-color: #0b0b0b;
+  z-index: 10;
+}
+
+.anatomy-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.1;
+  background: linear-gradient(90deg, #fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.anatomy-subtitle {
+    font-size: 1.3rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* --- REVEAL ANIMATION CLASSES --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anatomy-subtitle.reveal {
+  transition-delay: 0.2s;
+}
+
+/* --- INTERACTION HINT ANIMATION --- */
+.interaction-hint {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: opacity 0.5s ease;
+}
+
+.hint-icon {
+  width: 40px;
+  height: 40px;
+  fill: #eeeeee;
+  animation: drag-hand 2s infinite ease-in-out;
+}
+
+.hint-text {
+  font-size: 0.9rem;
+  color: #eeeeee;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+@keyframes drag-hand {
+  0%, 100% { transform: translateX(-15px); }
+  50% { transform: translateX(15px); }
+}
+
+/* --- RESPONSIVE LAYOUT (Mobile) --- */
+@media (max-width: 900px) {
+  .anatomy-wrapper { 
+    flex-direction: column; 
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto; /* Enable page scrolling */
+    background-color: #0b0b0b;
+  }
+
+  .anatomy-content { 
+    order: 1; 
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 3rem 1.5rem 1rem 1.5rem; 
+    flex: 0 0 auto; 
+    text-align: center;
+    border-left: none; /* Remove desktop border */
+  }
+
+  /* FIXED 3D VISUALS FOR MOBILE */
+  .anatomy-visuals { 
+    order: 2; 
+    flex: none; /* Do not stretch */
+    
+    /* Make it smaller */
+    height: 450px; 
+    
+    /* Create Gutters: Width 90% means 5% space on left/right 
+       This allows the user to scroll the page by touching the sides */
+    width: 90%; 
+    margin: 0 auto 50px auto; 
+    
+    /* Optional: Rounded corners look better when it's floating */
+    border-radius: 20px;
+    overflow: hidden; 
+    border: 1px solid #333;
+  }
+
+  .anatomy-title {
+    font-size: 2rem; 
+  }
+  
+  .anatomy-subtitle {
+    font-size: 1rem;
+  }
+}

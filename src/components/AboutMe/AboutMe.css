@@ -44,7 +44,7 @@
     font-weight: 700;
     margin-bottom: 20px;
     line-height: 1.1;
-    background: linear-gradient(90deg, #ffd700, #aaa);
+    background: linear-gradient(90deg, #ffd700, #d6b600);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -154,4 +154,14 @@ strong {
 /* Make photo reveal last since it's at the bottom on mobile */
 .abt-me-img.reveal {
     transition-delay: 0.3s; 
+}
+
+@media (max-width: 768px) {
+        .abt-me-img {
+        order: 3;
+        width: 100%;
+        top: 60px; /* Reasonable width */
+        max-width: 400px;
+        left: 0%;
+    }
 }
